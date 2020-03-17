@@ -1,9 +1,9 @@
-use std::error::Error;
 use csv::Reader;
+use std::error::Error;
 use std::process;
 
 fn example() -> Result<(), Box<dyn Error>> {
-    let mut rdr = Reader::from_path("/tmp14/equity-influx/csv/examples/data/ui.csv")?;
+    let mut rdr = Reader::from_path("./examples/data/test.csv")?;
     for result in rdr.records() {
         let record = result?;
         println!("{:?}", record);
