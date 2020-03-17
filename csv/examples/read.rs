@@ -6,6 +6,9 @@ use std::process;
 
 fn example() -> Result<(), Box<dyn Error>> {
     let mut rdr = Reader::from_path("./examples/data/test.csv")?;
+
+    let mut vec: Vec<HashMap<String,String>> = Vec::new();
+
     for result in rdr.records() {
         let mut entry: HashMap<String, String> = HashMap::new();
         let record = result?;
@@ -18,8 +21,10 @@ fn example() -> Result<(), Box<dyn Error>> {
         entry.insert("timestamp".to_string(), t2);
         entry.insert("close".to_string(), close.to_string());
         entry.insert("volume".to_string(), volume.to_string());
-        println!("{:?}", entry);
+        println!("{:?}", entry);        
+        vec.push(entry);
     }
+    println!("{:?}",vec);
     Ok(())
 }
 
