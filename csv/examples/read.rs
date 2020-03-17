@@ -12,8 +12,10 @@ fn example() -> Result<(), Box<dyn Error>> {
         let timestamp = &record[0];
         // println!("{:?}",timestamp);
         //let t1 = DateTime::parse_from_str(timestamp,"%Y-%m-%d %H:%M");
-        let t2 = Utc.datetime_from_str(timestamp, "%Y-%m-%d %H:%M");
+        let t2 = Utc.datetime_from_str(timestamp, "%Y-%m-%d %H:%M").unwrap();
         println!("{:?}", t2);
+        let t3 = t2.timestamp();
+        println!("{:?}", t3);
     }
     Ok(())
 }
