@@ -1,3 +1,4 @@
+use chrono::prelude::*;
 use csv::Reader;
 use std::error::Error;
 use std::process;
@@ -6,8 +7,13 @@ fn example() -> Result<(), Box<dyn Error>> {
     let mut rdr = Reader::from_path("./examples/data/test.csv")?;
     for result in rdr.records() {
         let record = result?;
-        println!("{:?}", record);
-        println!("{:?}", &record[0]);
+        // println!("{:?}", record);
+        // println!("{:?}", &record[0]);
+        let timestamp = &record[0];
+        // println!("{:?}",timestamp);
+        //let t1 = DateTime::parse_from_str(timestamp,"%Y-%m-%d %H:%M");
+        let t2 = Utc.datetime_from_str(timestamp, "%Y-%m-%d %H:%M");
+        println!("{:?}", t2);
     }
     Ok(())
 }
