@@ -8,10 +8,11 @@ fn example() -> Result<(), Box<dyn Error>> {
     for result in rdr.records() {
         let record = result?;
         let timestamp = &record[0];
+        let close = &record[4];
+        let volume = &record[5];
         let t1 = Utc.datetime_from_str(timestamp, "%Y-%m-%d %H:%M").unwrap();
-        println!("{:?}", t1);
         let t2 = t1.timestamp();
-        println!("{:?}", t2);
+        println!("{:?} {:?} {:?}", t2,close,volume);
     }
     Ok(())
 }
