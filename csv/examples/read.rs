@@ -7,6 +7,7 @@ fn example() -> Result<(), Box<dyn Error>> {
     for result in rdr.records() {
         let record = result?;
         println!("{:?}", record);
+        println!("{:?}", &record[0]);
     }
     Ok(())
 }
