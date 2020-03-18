@@ -23,7 +23,8 @@ fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
     // println!("vec len = {:?}", vec.len());
 
     for name in vec {
-        println!("{:?}", name.file_name().ok_or("No filename")?);
+        let filename = name.file_name().ok_or("No filename")?;
+        println!("{:?}", filename);
     }
 
     Ok(())
