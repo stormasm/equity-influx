@@ -8,9 +8,10 @@ use std::collections::HashMap;
 //use std::error::Error;
 //use std::process;
 
-#[allow(dead_code)]
-fn example() -> Result<(), Box<dyn Error>> {
-    let mut rdr = Reader::from_path("./examples/data/ui.csv")?;
+//#[allow(dead_code)]
+fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
+//  let mut rdr = Reader::from_path("./examples/data/ui.csv")?;
+    let mut rdr = Reader::from_path(filename)?;
 
     let mut vec: Vec<HashMap<String,String>> = Vec::new();
 
@@ -60,6 +61,8 @@ fn file_stem(filename: &str) -> Option<&str> {
 fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
     let vec = dir_reader(mydir).unwrap();
     // println!("vec len = {:?}", vec.len());
+
+    let _x = read_csv("./examples/data/ui.csv");
 
     for name in vec {
         // let filename = name.file_name().ok_or("No filename")?;
