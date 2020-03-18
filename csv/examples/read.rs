@@ -10,8 +10,12 @@ use std::collections::HashMap;
 
 //#[allow(dead_code)]
 fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
+
 //  let mut rdr = Reader::from_path("./examples/data/ui.csv")?;
     let mut rdr = Reader::from_path(filename)?;
+
+    // let measurement = file_stem(filename).unwrap().to_string();
+    // println!("{:?}", measurement);
 
     let mut vec: Vec<HashMap<String,String>> = Vec::new();
 
@@ -24,6 +28,7 @@ fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
         let t1 = Utc.datetime_from_str(timestamp, "%Y-%m-%d %H:%M").unwrap();
         let t2 = t1.timestamp().to_string();
         // println!("{:?} {:?} {:?}", t2,close,volume);
+        entry.insert("measurement".to_string(), file_stem(filename).unwrap().to_string());
         entry.insert("timestamp".to_string(), t2);
         entry.insert("close".to_string(), close.to_string());
         entry.insert("volume".to_string(), volume.to_string());
@@ -50,7 +55,7 @@ fn dir_reader(mydir: String) -> Result<Vec<PathBuf>, Box<dyn Error>> {
     Ok(vec)
 }
 
-#[allow(dead_code)]
+// #[allow(dead_code)]
 fn file_stem(filename: &str) -> Option<&str> {
     let path = Path::new(filename);
     let name = path.file_stem().unwrap().to_str();
@@ -77,6 +82,6 @@ fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
 }
 
 fn main() {
-    let mydir = String::from("/tmp14/equity-influx/csv/examples/data");
+    let mydir = String::from("./examples/data");
     let _ = processor(mydir);
 }
