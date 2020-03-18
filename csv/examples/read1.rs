@@ -5,7 +5,7 @@ use std::error::Error;
 use std::process;
 
 fn example() -> Result<(), Box<dyn Error>> {
-    let mut rdr = Reader::from_path("./examples/data/test.csv")?;
+    let mut rdr = Reader::from_path("./examples/data/ui.csv")?;
 
     let mut vec: Vec<HashMap<String,String>> = Vec::new();
 
@@ -21,7 +21,7 @@ fn example() -> Result<(), Box<dyn Error>> {
         entry.insert("timestamp".to_string(), t2);
         entry.insert("close".to_string(), close.to_string());
         entry.insert("volume".to_string(), volume.to_string());
-        println!("{:?}", entry);        
+        println!("{:?}", entry);
         vec.push(entry);
     }
     println!("{:?}",vec);
