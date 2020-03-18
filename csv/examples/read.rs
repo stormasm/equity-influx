@@ -62,11 +62,12 @@ fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
     let vec = dir_reader(mydir).unwrap();
     // println!("vec len = {:?}", vec.len());
 
-    let _x = read_csv("./examples/data/ui.csv");
+    //let _x = read_csv("./examples/data/ui.csv");
 
     for name in vec {
         // let filename = name.file_name().ok_or("No filename")?;
-        let filename = name.file_name();
+        let filename = name.to_str().unwrap();
+        let _x = read_csv(filename);
         let filestem = name.file_stem();
         println!("{:?} {:?}", filename, filestem);
         // println!("{:?}", file_stem(filename));
