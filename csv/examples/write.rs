@@ -1,15 +1,26 @@
 use std::collections::HashMap;
 use std::error::Error;
 
+// This returns a String in the exact line protocol format
+// symbol-name volume=31,close=99 1561930347
+fn hashmap_reader(hm: HashMap<String, String>) -> String {
+    println!("{:?}\n", hm);
+    "ok".to_string()
+}
+
 fn write_lp(_dirname: &str, vec: Vec<HashMap<String, String>>) -> Result<(), Box<dyn Error>> {
     for line in vec {
         println!("{:?}\n", line);
+        let _x = hashmap_reader(line);
     }
 
     Ok(())
 }
 
-fn processor(mydir: String, myvec: Vec<HashMap<String, String>>) -> Result<(), Box<dyn Error>> {
+fn line_protocol_processor(
+    mydir: String,
+    myvec: Vec<HashMap<String, String>>,
+) -> Result<(), Box<dyn Error>> {
     let _x = write_lp(&mydir, myvec);
     Ok(())
 }
@@ -40,7 +51,7 @@ fn get_vector() -> Vec<HashMap<String, String>> {
 fn main() {
     let dirout = String::from("./tmp/out");
     let vec = get_vector();
-    let _ = processor(dirout, vec);
+    let _ = line_protocol_processor(dirout, vec);
 }
 
 // let mut vec = vec![{"volume": "344000.00", "close": "127.85", "timestamp": "1583712000", "measurement": "ui"}, {"close": "135.63", "measurement": "ui", "volume": "240900.00", "timestamp": "1583798400"}, {"measurement": "ui", "close": "129.50", "timestamp": "1583884800", "volume": "336700.00"}, {"measurement": "ui", "volume": "411600.00", "timestamp": "1583971200", "close": "113.45"}, {"close": "122.92", "volume": "440800.00", "measurement": "ui", "timestamp": "1584057600"}];
