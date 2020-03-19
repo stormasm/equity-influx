@@ -50,7 +50,7 @@ fn file_stem(filename: &str) -> Option<&str> {
     name
 }
 
-fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
+fn read_processor(mydir: String) -> Result<(), Box<dyn Error>> {
     let vec = dir_reader(mydir).unwrap();
     for name in vec {
         let filename = name.to_str().unwrap();
@@ -61,6 +61,6 @@ fn processor(mydir: String) -> Result<(), Box<dyn Error>> {
 }
 
 fn main() {
-    let mydir = String::from("./examples/data");
-    let _ = processor(mydir);
+    let dirin = String::from("./examples/data");
+    let _ = read_processor(dirin);
 }
