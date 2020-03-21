@@ -1,6 +1,13 @@
 use std::collections::HashMap;
 use std::error::Error;
 
+struct Point {
+    measurement: String,
+    time_stamp: String,
+    field_set: HashMap<String,String>,
+    tag_set: HashMap<String,String>,
+}
+
 // This returns a String in the exact line protocol format
 // symbol-name volume=31,close=99 1561930347
 fn hashmap_reader(hm: HashMap<String, String>) -> String {
@@ -11,6 +18,13 @@ fn hashmap_reader(hm: HashMap<String, String>) -> String {
 fn write_lp(_dirname: &str, vec: Vec<HashMap<String, String>>) -> Result<(), Box<dyn Error>> {
     for line in vec {
         println!("{:?}\n", line);
+
+        // Initialize the struct
+        // Set the measurement
+        // Set the timestamp
+        // Pass it in to the field set creator
+        // Insert the tag set into the struct
+
         let _x = hashmap_reader(line);
     }
 
