@@ -1,3 +1,4 @@
+use infcsv::point::Point;
 
 fn main() {
     let point: Point = Point {

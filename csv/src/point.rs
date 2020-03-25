@@ -2,29 +2,29 @@ use std::collections::HashMap;
 use std::fmt::Write as FmtWrite;
 
 #[derive(Debug)]
-struct Point {
-    measurement: String,
-    tagset: HashMap<String, String>,
-    fieldset: HashMap<String, String>,
-    timestamp: String,
+pub struct Point {
+    pub measurement: String,
+    pub tagset: HashMap<String, String>,
+    pub fieldset: HashMap<String, String>,
+    pub timestamp: String,
 }
 
 impl Point {
-    fn set_fieldset(volume: String, close: String) -> HashMap<String, String> {
+    pub fn set_fieldset(volume: String, close: String) -> HashMap<String, String> {
         let mut foo = HashMap::new();
         foo.insert("volume".to_string(), volume);
         foo.insert("close".to_string(), close);
         foo.clone()
     }
 
-    fn set_tagset() -> HashMap<String, String> {
+    pub fn set_tagset() -> HashMap<String, String> {
         let mut foo = HashMap::new();
         foo.insert("frequency".to_string(), "daily".to_string());
         foo.insert("type".to_string(), "close".to_string());
         foo.clone()
     }
 
-    fn get_lineprotocol(self) -> Result<String, Box<dyn std::error::Error>> {
+    pub fn get_lineprotocol(self) -> Result<String, Box<dyn std::error::Error>> {
         let mut s = String::new();
         write!(&mut s, "{},", self.measurement).expect("error in measurement");
 

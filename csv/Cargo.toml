@@ -1,5 +1,5 @@
 [package]
-name = "csv"
+name = "infcsv"
 version = "0.1.0"
 authors = ["Michael Angerman <stormasm@gmail.com>"]
 edition = "2018"
