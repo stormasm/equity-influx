@@ -5,9 +5,14 @@ use std::path::{Path, PathBuf};
 
 use chrono::prelude::*;
 use csv::Reader;
+use infcsv::point::Point;
 
 fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
     let mut rdr = Reader::from_path(filename)?;
+
+    let mut _vecp: Vec<Point> = Vec::new();
+    // let mut x :Vec<Data> = Vec::new();
+
     let mut vec: Vec<HashMap<String, String>> = Vec::new();
 
     for result in rdr.records() {

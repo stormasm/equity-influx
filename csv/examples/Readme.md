@@ -12,3 +12,7 @@ and just prints out the vectors in real time
 ##### read3
 This returns the actual vector of HashMaps which will then get sent
 into the write_processor
+
+#### References
+
+https://users.rust-lang.org/t/can-we-make-vector-of-structs-if-yes-than-how-to-make-and-use-it/19476
