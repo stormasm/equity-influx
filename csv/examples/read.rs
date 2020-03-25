@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+//use std::collections::HashMap;
 use std::error::Error;
 use std::fs;
 use std::path::{Path, PathBuf};
@@ -11,16 +11,17 @@ fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
     let mut rdr = Reader::from_path(filename)?;
 
     let mut vecp: Vec<Point> = Vec::new();
-    let mut vec: Vec<HashMap<String, String>> = Vec::new();
+    //let mut vec: Vec<HashMap<String, String>> = Vec::new();
 
     for result in rdr.records() {
-        let mut entry: HashMap<String, String> = HashMap::new();
+        //let mut entry: HashMap<String, String> = HashMap::new();
         let record = result?;
         let timestamp = &record[0];
         let close = &record[4];
         let volume = &record[5];
         let t1 = Utc.datetime_from_str(timestamp, "%Y-%m-%d %H:%M").unwrap();
-        let t2 = t1.timestamp().to_string();
+        //let t2 = t1.timestamp().to_string();
+        /*
         entry.insert(
             "measurement".to_string(),
             file_stem(filename).unwrap().to_string(),
@@ -28,7 +29,7 @@ fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
         entry.insert("timestamp".to_string(), t2);
         entry.insert("close".to_string(), close.to_string());
         entry.insert("volume".to_string(), volume.to_string());
-
+        */
         let point: Point = Point {
             measurement: file_stem(filename).unwrap().to_string(),
             tagset: Point::set_tagset(),
@@ -36,12 +37,11 @@ fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
             timestamp: t1.timestamp().to_string(),
         };
         vecp.push(point);
-        vec.push(entry);
+        //vec.push(entry);
     }
-    println!("{:?}\n", vec);
-    println!("\n");
+    //println!("{:?}\n", vec);
+    //println!("\n");//
     println!("{:?}\n", vecp);
-    println!("\n\n\n");
     Ok(())
 }
 
