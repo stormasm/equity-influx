@@ -10,9 +10,7 @@ use infcsv::point::Point;
 fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
     let mut rdr = Reader::from_path(filename)?;
 
-    let mut _vecp: Vec<Point> = Vec::new();
-    // let mut x :Vec<Data> = Vec::new();
-
+    let mut vecp: Vec<Point> = Vec::new();
     let mut vec: Vec<HashMap<String, String>> = Vec::new();
 
     for result in rdr.records() {
@@ -30,9 +28,20 @@ fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
         entry.insert("timestamp".to_string(), t2);
         entry.insert("close".to_string(), close.to_string());
         entry.insert("volume".to_string(), volume.to_string());
+
+        let point: Point = Point {
+            measurement: file_stem(filename).unwrap().to_string(),
+            tagset: Point::set_tagset(),
+            fieldset: Point::set_fieldset(volume.to_string(), close.to_string()),
+            timestamp: t1.timestamp().to_string(),
+        };
+        vecp.push(point);
         vec.push(entry);
     }
     println!("{:?}\n", vec);
+    println!("\n");
+    println!("{:?}\n", vecp);
+    println!("\n\n\n");
     Ok(())
 }
 
