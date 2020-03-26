@@ -6,9 +6,8 @@ use chrono::prelude::*;
 use csv::Reader;
 use infcsv::point::Point;
 
-
-fn lp_writer(dirout: String, vec: Vec<Point>) -> Result<(), Box<dyn Error>> {
-    println!("{}",dirout);
+fn lp_writer(dirout: &str, vec: Vec<Point>) -> Result<(), Box<dyn Error>> {
+    println!("{}", dirout);
     for entry in vec.iter() {
         println!("{:?}\n", entry);
     }
@@ -59,7 +58,7 @@ fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> 
         let filename = name.to_str().unwrap();
         let vecp = csv_reader(filename);
         //println!("{:?}\n", vecp);
-        let _x = lp_writer(dirout,vecp.unwrap());
+        let _x = lp_writer(&dirout, vecp.unwrap());
     }
     Ok(())
 }
@@ -67,5 +66,5 @@ fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> 
 fn main() {
     let dirin = String::from("./examples/data/csv");
     let dirout = String::from("./examples/data/out");
-    let _ = write_processor(dirin,dirout);
+    let _ = write_processor(dirin, dirout);
 }
