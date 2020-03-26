@@ -9,7 +9,7 @@ use infcsv::point::Point;
 fn lp_writer(filename: &str, vec: Vec<Point>) -> Result<(), Box<dyn Error>> {
     println!("{}", filename);
     for entry in vec.iter() {
-        println!("{:?}\n", entry);        
+        println!("{:?}\n", entry);
         //let lp = entry.get_lineprotocol();
         //println!("{:?}\n", lp);
     }
