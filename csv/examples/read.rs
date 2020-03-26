@@ -6,7 +6,7 @@ use chrono::prelude::*;
 use csv::Reader;
 use infcsv::point::Point;
 
-fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
+fn read_csv(filename: &str) -> Result<Vec<Point>, Box<dyn Error>> {
     let mut rdr = Reader::from_path(filename)?;
     let mut vecp: Vec<Point> = Vec::new();
     for result in rdr.records() {
@@ -23,8 +23,8 @@ fn read_csv(filename: &str) -> Result<(), Box<dyn Error>> {
         };
         vecp.push(point);
     }
-    println!("{:?}\n", vecp);
-    Ok(())
+    //println!("{:?}\n", vecp);
+    Ok(vecp)
 }
 
 fn dir_reader(mydir: String) -> Result<Vec<PathBuf>, Box<dyn Error>> {
@@ -48,7 +48,8 @@ fn read_processor(mydir: String) -> Result<(), Box<dyn Error>> {
     let vec = dir_reader(mydir).unwrap();
     for name in vec {
         let filename = name.to_str().unwrap();
-        let _x = read_csv(filename);
+        let vecp = read_csv(filename);
+        println!("{:?}\n", vecp);
     }
     Ok(())
 }
