@@ -65,7 +65,6 @@ fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> 
         let filename = name.to_str().unwrap();
         let vecp = csv_reader(filename);
 
-
         let stem = file_stem(filename).unwrap();
         let mut filename_out = create_filename(stem,"txt");
         println!("{:?}",filename_out);
