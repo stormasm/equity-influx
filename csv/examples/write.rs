@@ -57,8 +57,7 @@ fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> 
     for name in vec {
         let filename = name.to_str().unwrap();
         let vecp = csv_reader(filename);
-        //println!("{:?}\n", vecp);
-        let _x = lp_writer(&dirout, vecp.unwrap());
+        let _ = lp_writer(&dirout, vecp.unwrap());
     }
     Ok(())
 }
