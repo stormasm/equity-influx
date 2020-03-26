@@ -6,10 +6,10 @@ use chrono::prelude::*;
 use csv::Reader;
 use infcsv::point::Point;
 
-fn lp_writer(dirout: &str, vec: Vec<Point>) -> Result<(), Box<dyn Error>> {
-    println!("{}", dirout);
+fn lp_writer(filename: &str, vec: Vec<Point>) -> Result<(), Box<dyn Error>> {
+    println!("{}", filename);
     for entry in vec.iter() {
-        println!("{:?}\n", entry);
+        //println!("{:?}\n", entry);
     }
     Ok(())
 }
@@ -52,11 +52,24 @@ fn file_stem(filename: &str) -> Option<&str> {
     name
 }
 
+// https://doc.rust-lang.org/std/path/struct.Path.html#method.join
+// Concat the filename and the extension
+fn create_filename(filename: &str, extension: &str) -> std::path::PathBuf {
+    let x = Path::new(filename).with_extension(extension);
+    x
+}
+
 fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> {
     let vec = dir_reader(dirin).unwrap();
     for name in vec {
         let filename = name.to_str().unwrap();
         let vecp = csv_reader(filename);
+
+
+        let stem = file_stem(filename).unwrap();
+        let filename_out = create_filename(stem,"txt");
+        println!("{:?}",filename_out);
+
         let _ = lp_writer(&dirout, vecp.unwrap());
     }
     Ok(())
