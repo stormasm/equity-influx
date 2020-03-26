@@ -44,7 +44,7 @@ fn file_stem(filename: &str) -> Option<&str> {
     name
 }
 
-fn read_processor(mydir: String) -> Result<(), Box<dyn Error>> {
+fn write_processor(mydir: String) -> Result<(), Box<dyn Error>> {
     let vec = dir_reader(mydir).unwrap();
     for name in vec {
         let filename = name.to_str().unwrap();
@@ -55,6 +55,7 @@ fn read_processor(mydir: String) -> Result<(), Box<dyn Error>> {
 }
 
 fn main() {
-    let dirin = String::from("./examples/data");
-    let _ = read_processor(dirin);
+    let dirin = String::from("./examples/data/csv");
+    let dirout = String::from("./examples/data/out");
+    let _ = write_processor(dirin,dirout);
 }
