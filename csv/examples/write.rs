@@ -6,6 +6,15 @@ use chrono::prelude::*;
 use csv::Reader;
 use infcsv::point::Point;
 
+
+fn lp_writer(dirout: String, vec: Vec<Point>) -> Result<(), Box<dyn Error>> {
+    println!("{}",dirout);
+    for entry in vec.iter() {
+        println!("{:?}\n", entry);
+    }
+    Ok(())
+}
+
 fn csv_reader(filename: &str) -> Result<Vec<Point>, Box<dyn Error>> {
     let mut rdr = Reader::from_path(filename)?;
     let mut vecp: Vec<Point> = Vec::new();
@@ -44,12 +53,13 @@ fn file_stem(filename: &str) -> Option<&str> {
     name
 }
 
-fn write_processor(mydir: String) -> Result<(), Box<dyn Error>> {
-    let vec = dir_reader(mydir).unwrap();
+fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> {
+    let vec = dir_reader(dirin).unwrap();
     for name in vec {
         let filename = name.to_str().unwrap();
         let vecp = csv_reader(filename);
-        println!("{:?}\n", vecp);
+        //println!("{:?}\n", vecp);
+        let _x = lp_writer(dirout,vecp.unwrap());
     }
     Ok(())
 }
