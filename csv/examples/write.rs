@@ -66,13 +66,14 @@ fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> 
         let vecp = csv_reader(filename);
 
         let stem = file_stem(filename).unwrap();
-        let mut filename_out = create_filename(stem,"txt");
-        println!("{:?}",filename_out);
+        let fn1 = create_filename(stem,"txt");
+        //println!("{:?}",filename_out);
 
-        filename_out = Path::new(&dirout).join(filename_out);
-        println!("{:?}",filename_out);
+        let fn2 = Path::new(&dirout).join(fn1);
+        let x = fn2.to_str().unwrap();
+        println!("{:?}",x);
 
-        let _ = lp_writer(&dirout, vecp.unwrap());
+        let _ = lp_writer(&x, vecp.unwrap());
     }
     Ok(())
 }
