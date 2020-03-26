@@ -67,11 +67,9 @@ fn write_processor(dirin: String, dirout: String) -> Result<(), Box<dyn Error>> 
 
         let stem = file_stem(filename).unwrap();
         let fn1 = create_filename(stem,"txt");
-        //println!("{:?}",filename_out);
 
         let fn2 = Path::new(&dirout).join(fn1);
         let x = fn2.to_str().unwrap();
-        println!("{:?}",x);
 
         let _ = lp_writer(&x, vecp.unwrap());
     }
