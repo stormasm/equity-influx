@@ -24,3 +24,7 @@ symbol-name volume=31,close=99 1561930347
 ##### references
 
 [line protocol details](https://v2.docs.influxdata.com/v2.0/reference/syntax/line-protocol/)
+
+[lifetimes note 1](https://www.google.com/search?q=cannot+move+out+of+%60*entry%60+which+is+behind+a+shared+reference&oq=cannot+move+out+of+%60*entry%60+which+is+behind+a+shared+reference&aqs=chrome..69i57.2527j0j7&sourceid=chrome&ie=UTF-8)
+
+https://stackoverflow.com/questions/32338659/cannot-cannot-move-out-of-value-which-is-behind-a-shared-reference-when-unwrappi
